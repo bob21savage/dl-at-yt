@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Audio Downloader</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #message { margin-top: 10px; color: red; }
+    </style>
+</head>
+<body>
+    <h1>YouTube Audio Downloader</h1>
+    <input type="text" id="video-url" placeholder="Enter YouTube video URL..." />
+    <button id="download-btn">Download Audio</button>
+    <div id="message"></div>
+
+    <script>
+        document.getElementById('download-btn').addEventListener('click', async function() {
+            const url = document.getElementById('video-url').value;
+            const messageDiv = document.getElementById('message');
+
+            if (!url) {
+                messageDiv.innerText = 'Please enter a URL.';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/api/download-audio', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url })
+                });
+
+                if (!response.ok) {
+                    const errorResult = await response.json();
+                    messageDiv.innerText = errorResult.error || 'An unexpected error occurred.';
+                    return;
+                }
+
+                const result = await response.json();
+                messageDiv.innerText = 'Download started... Files: ' + result.files.join(', ');
+            } catch (error) {
+                console.error('Error during fetch:', error);
+                messageDiv.innerText = 'An error occurred during the fetch. Please check the console for details.';
+            }
+        });
+    </script>
+</body>
+</html>

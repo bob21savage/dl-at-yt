@@ -1,0 +1,28 @@
+{
+  "name": "my-game",
+  "version": "1.0.0",
+  "description": "A fun game built with Electron",
+  "main": "server.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "webpack",
+    "package-win": "electron-packager . MyGame --platform=win32 --arch=x64 --out=dist --overwrite",
+    "package-mac": "electron-packager . MyGame --platform=darwin --arch=x64 --out=dist --overwrite",
+    "package-linux": "electron-packager . MyGame --platform=linux --arch=x64 --out=dist --overwrite",
+    "dev": "webpack --watch"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "deep-defaults": "^3.0.2",
+    "electron": "^33.2.1",
+    "express": "^4.21.2",
+    "sliced": "^1.0.0"
+  },
+  "devDependencies": {
+    "electron-packager": "^15.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
