@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "deep-defaults": "^3.0.2",
+    "deep-defaults": "1.0.5",
     "electron": "^33.2.1",
-    "express": "^4.21.2",
+    "express": "4.21.2",
     "sliced": "^1.0.0"
   },
   "devDependencies": {
